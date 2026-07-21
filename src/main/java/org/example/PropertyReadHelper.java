@@ -20,6 +20,12 @@ public class PropertyReadHelper {
     }
 
     public static String getPropertyKey(String property_value) {
+
+        String fromEnv = System.getenv("API_KEY");
+        if (fromEnv != null && !fromEnv.isBlank()) {
+            return fromEnv;
+        }
+
         try {
             FileInputStream fis = new FileInputStream("src/main/resources/keys.properties");
             Properties property = new Properties();
