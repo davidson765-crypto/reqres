@@ -8,8 +8,6 @@ import java.util.List;
 @Data
 public class UsersResponse {
 
-    public UsersResponse() {}
-
     private String page;
 
     private String per_page;
