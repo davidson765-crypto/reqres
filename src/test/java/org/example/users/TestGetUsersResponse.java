@@ -31,13 +31,13 @@ public class TestGetUsersResponse {
     @Test
     public void getUsersPerPage() {
 
-        Assert.assertEquals("6", users.getPerPage());
+        Assert.assertEquals("6", users.getPer_page());
     }
 
     @Test
     public void getUsersTotalPages() {
 
-        Assert.assertEquals("2", users.getTotalPages());
+        Assert.assertEquals("2", users.getTotal_pages());
     }
 
     @Test
