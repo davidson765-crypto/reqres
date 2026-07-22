@@ -12,14 +12,18 @@ public class TestGetUserResponse {
     @CsvFileSource(resources = "/users.csv", numLinesToSkip = 1)
     public void testGetUser(String id, String email, String first_name, String last_name, String avatar) {
 
-        UserResponse.UserData user_actual = new Requests().setSpecs().getUser(id, 200).getData();
+        UserResponse.UserData user_actual = new Requests()
+                .setSpecs()
+                .getUser(id, 200)
+                .getData();
 
-        UserResponse.UserData user_expected = new UserResponse.UserData()
-                .setId(id)
-                .setEmail(email)
-                .setAvatar(avatar)
-                .setFirst_name(first_name)
-                .setLast_name(last_name);
+        UserResponse.UserData user_expected = UserResponse.UserData.builder()
+                .first_name(first_name)
+                .last_name(last_name)
+                .email(email)
+                .avatar(avatar)
+                .id(id)
+                .build();
 
         Assertions.assertEquals(user_actual, user_expected);
     }
