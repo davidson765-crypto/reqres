@@ -20,7 +20,7 @@ public class TestRegisterUserResponse {
     @Epic("API")
     @Feature("Авторизация")
     @Story("Регистрация")
-    @Severity(SeverityLevel.CRITICAL)
+    @Severity(SeverityLevel.BLOCKER)
     @Owner("AQA-1")
     public void testRegisterUser() {
 
