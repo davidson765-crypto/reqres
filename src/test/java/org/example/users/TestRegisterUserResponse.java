@@ -15,7 +15,7 @@ public class TestRegisterUserResponse {
     public void testRegisterUser() {
 
         RegisterLoginRequestBody user_reg = RegisterLoginRequestBody.builder()
-                .email(PropertyReadHelper.getPropertyCustom("api.email"))
+                .email(PropertyReadHelper.getPropertyCustom("API_EMAIL"))
                 .password(PropertyReadHelper.getPropertyKey("API_REGISTRATION_PASSWORD"))
                 .build();
 

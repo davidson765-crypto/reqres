@@ -1,7 +1,6 @@
 package org.example.requests;
 
 import io.restassured.*;
-import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.example.PropertyReadHelper;
 import org.example.entities.request.RegisterLoginRequestBody;
@@ -13,7 +12,7 @@ public class Requests {
 
     public String apiKey = PropertyReadHelper.getPropertyKey("API_KEY");
 
-    public String BASE_URL = PropertyReadHelper.getPropertyCustom("api.baseUrl");
+    public String BASE_URL = PropertyReadHelper.getPropertyCustom("API_BASE_URL");
 
     public RequestSpecification requestSpecification;
 
@@ -68,7 +67,7 @@ public class Requests {
                 .as(RegisterUserResponse.class);
     }
 
-    public Response postLogin(int status_code, RegisterLoginRequestBody user_log) {
+    public RegisterUserResponse postLogin(int status_code, RegisterLoginRequestBody user_log) {
 
         return requestSpecification
                 .body(user_log)
@@ -77,6 +76,7 @@ public class Requests {
                 .assertThat()
                 .statusCode(status_code)
                 .extract()
-                .response();
+                .response()
+                .as(RegisterUserResponse.class);
     }
 }
