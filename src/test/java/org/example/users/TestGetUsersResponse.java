@@ -1,6 +1,6 @@
 package org.example.users;
 
-import org.example.entities.UsersResponse;
+import org.example.entities.response.UsersResponse;
 import org.example.requests.Requests;
 import org.junit.Assert;
 import org.junit.BeforeClass;

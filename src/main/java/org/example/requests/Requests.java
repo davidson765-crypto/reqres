@@ -1,20 +1,18 @@
 package org.example.requests;
 
 import io.restassured.*;
-import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.example.PropertyReadHelper;
-import org.example.entities.RegisterUserResponse;
-import org.example.entities.UserResponse;
-import org.example.entities.UsersResponse;
-
-import java.util.HashMap;
+import org.example.entities.request.RegisterLoginRequestBody;
+import org.example.entities.response.RegisterUserResponse;
+import org.example.entities.response.UserResponse;
+import org.example.entities.response.UsersResponse;
 
 public class Requests {
 
-    public String apiKey = PropertyReadHelper.getPropertyKey("api.key");
+    public String apiKey = PropertyReadHelper.getPropertyKey("API_KEY");
 
-    public String BASE_URL = PropertyReadHelper.getPropertyCustom("api.baseUrl");
+    public String BASE_URL = PropertyReadHelper.getPropertyCustom("API_BASE_URL");
 
     public RequestSpecification requestSpecification;
 
@@ -56,12 +54,7 @@ public class Requests {
                 .as(UserResponse.class);
     }
 
-    public RegisterUserResponse postRegister(int status_code) {
-
-        HashMap<String, String> user_reg = new HashMap<>();
-
-        user_reg.put("email", PropertyReadHelper.getPropertyCustom("api.email"));
-        user_reg.put("password", PropertyReadHelper.getPropertyCustom("api.register_password"));
+    public RegisterUserResponse postRegister(int status_code, RegisterLoginRequestBody user_reg) {
 
         return requestSpecification
                 .body(user_reg)
@@ -74,12 +67,7 @@ public class Requests {
                 .as(RegisterUserResponse.class);
     }
 
-    public Response postLogin(int status_code) {
-
-        HashMap<String, String> user_log = new HashMap<>();
-
-        user_log.put("email", PropertyReadHelper.getPropertyCustom("api.email"));
-        user_log.put("password", PropertyReadHelper.getPropertyCustom("api.login_password"));
+    public RegisterUserResponse postLogin(int status_code, RegisterLoginRequestBody user_log) {
 
         return requestSpecification
                 .body(user_log)
@@ -88,6 +76,7 @@ public class Requests {
                 .assertThat()
                 .statusCode(status_code)
                 .extract()
-                .response();
+                .response()
+                .as(RegisterUserResponse.class);
     }
 }

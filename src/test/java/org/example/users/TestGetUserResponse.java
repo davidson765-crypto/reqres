@@ -1,6 +1,6 @@
 package org.example.users;
 
-import org.example.entities.UserResponse;
+import org.example.entities.response.UserResponse;
 import org.example.requests.Requests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.provider.CsvFileSource;

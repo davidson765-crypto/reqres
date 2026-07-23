@@ -21,7 +21,7 @@ public class PropertyReadHelper {
 
     public static String getPropertyKey(String property_value) {
 
-        String fromEnv = System.getenv("API_KEY");
+        String fromEnv = System.getenv(property_value);
         if (fromEnv != null && !fromEnv.isBlank()) {
             return fromEnv;
         }

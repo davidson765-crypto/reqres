@@ -1,4 +1,4 @@
-package org.example.entities;
+package org.example.entities.response;
 
 
 import lombok.Data;
@@ -7,8 +7,6 @@ import java.util.List;
 
 @Data
 public class UsersResponse {
-
-    public UsersResponse() {}
 
     private String page;
 
