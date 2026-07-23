@@ -1,15 +1,25 @@
 package org.example.users;
 
+import io.qameta.allure.*;
+import jdk.jfr.Description;
 import org.example.PropertyReadHelper;
 import org.example.entities.request.RegisterLoginRequestBody;
 import org.example.entities.response.RegisterUserResponse;
 import org.example.requests.Requests;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
 public class TestLoginUserResponse {
 
     @Test
+    @DisplayName("Проверка ответа API: авторизация пользователя")
+    @Description("Тест отправляет POST-запрос с валидными данными к /login и проверяет корректность ответа")
+    @Epic("API")
+    @Feature("Авторизация")
+    @Story("Авторизация")
+    @Severity(SeverityLevel.BLOCKER)
+    @Owner("AQA-1")
     public void testLoginUserResponse() {
 
         RegisterLoginRequestBody user_log = RegisterLoginRequestBody.builder()
