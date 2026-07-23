@@ -4,9 +4,9 @@ import io.restassured.*;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.example.PropertyReadHelper;
-import org.example.entities.RegisterUserResponse;
-import org.example.entities.UserResponse;
-import org.example.entities.UsersResponse;
+import org.example.entities.response.RegisterUserResponse;
+import org.example.entities.response.UserResponse;
+import org.example.entities.response.UsersResponse;
 
 import java.util.HashMap;
 

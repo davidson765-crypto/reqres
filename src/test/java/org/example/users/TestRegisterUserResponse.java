@@ -1,6 +1,6 @@
 package org.example.users;
 
-import org.example.entities.RegisterUserResponse;
+import org.example.entities.response.RegisterUserResponse;
 import org.example.requests.Requests;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
