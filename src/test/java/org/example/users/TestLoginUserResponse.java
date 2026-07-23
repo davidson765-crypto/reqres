@@ -1,13 +1,12 @@
 package org.example.users;
 
 import io.qameta.allure.*;
-import jdk.jfr.Description;
 import org.example.PropertyReadHelper;
 import org.example.entities.request.RegisterLoginRequestBody;
 import org.example.entities.response.RegisterUserResponse;
 import org.example.requests.Requests;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
 public class TestLoginUserResponse {
@@ -29,6 +28,6 @@ public class TestLoginUserResponse {
 
         RegisterUserResponse loginUser = new Requests().setSpecs().postLogin(200, user_log);
 
-        Assert.assertEquals(loginUser.getToken(), "QpwL5tke4Pnpja7X4");
+        Assertions.assertEquals(loginUser.getToken(), "QpwL5tke4Pnpja7X4");
     }
 }

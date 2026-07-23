@@ -1,7 +1,6 @@
 package org.example.users;
 
 import io.qameta.allure.*;
-import jdk.jfr.Description;
 import org.example.PropertyReadHelper;
 import org.example.entities.request.RegisterLoginRequestBody;
 import org.example.entities.response.RegisterUserResponse;
