@@ -6,7 +6,7 @@ import org.example.PropertyReadHelper;
 import org.example.entities.request.RegisterLoginRequestBody;
 import org.example.entities.response.RegisterUserResponse;
 import org.example.requests.Requests;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 
