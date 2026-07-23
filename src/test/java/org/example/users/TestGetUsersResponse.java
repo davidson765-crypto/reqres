@@ -2,15 +2,15 @@ package org.example.users;
 
 import org.example.entities.response.UsersResponse;
 import org.example.requests.Requests;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Assertions;
 
 public class TestGetUsersResponse {
 
     static UsersResponse users;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUp() {
 
         users = new Requests().setSpecs().getUsers(2, 200);
@@ -19,30 +19,30 @@ public class TestGetUsersResponse {
     @Test
     public void getUsersTotal() {
 
-        Assert.assertEquals("12", users.getTotal());
+        Assertions.assertEquals("12", users.getTotal());
     }
 
     @Test
     public void getUsersPage() {
 
-        Assert.assertEquals("2", users.getPage());
+        Assertions.assertEquals("2", users.getPage());
     }
 
     @Test
     public void getUsersPerPage() {
 
-        Assert.assertEquals("6", users.getPer_page());
+        Assertions.assertEquals("6", users.getPer_page());
     }
 
     @Test
     public void getUsersTotalPages() {
 
-        Assert.assertEquals("2", users.getTotal_pages());
+        Assertions.assertEquals("2", users.getTotal_pages());
     }
 
     @Test
     public void getUsersDataEmails() {
 
-        Assert.assertTrue(users.getData().stream().allMatch(x -> x.getEmail().endsWith("@reqres.in")));
+        Assertions.assertTrue(users.getData().stream().allMatch(x -> x.getEmail().endsWith("@reqres.in")));
     }
 }

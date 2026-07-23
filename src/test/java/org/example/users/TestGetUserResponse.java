@@ -1,7 +1,6 @@
 package org.example.users;
 
 import io.qameta.allure.*;
-import jdk.jfr.Description;
 import org.example.entities.response.UserResponse;
 import org.example.requests.Requests;
 import org.junit.jupiter.api.Assertions;
