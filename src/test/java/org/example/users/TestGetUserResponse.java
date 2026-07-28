@@ -3,7 +3,8 @@ package org.example.users;
 import io.qameta.allure.*;
 import org.example.entities.response.UserResponse;
 import org.example.requests.Requests;
-import org.junit.jupiter.api.Assertions;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,7 +27,13 @@ public class TestGetUserResponse {
                 .getUser(id, 200)
                 .getData();
 
-        UserResponse.UserData user_expected = UserResponse.UserData.builder()
+        assertThat(user_actual.getId()).isEqualTo(id);
+        assertThat(user_actual.getEmail()).isEqualTo(email);
+        assertThat(user_actual.getFirst_name()).isEqualTo(first_name);
+        assertThat(user_actual.getLast_name()).isEqualTo(last_name);
+        assertThat(user_actual.getAvatar()).isEqualTo(avatar);
+
+        /*UserResponse.UserData user_expected = UserResponse.UserData.builder()
                 .first_name(first_name)
                 .last_name(last_name)
                 .email(email)
@@ -34,6 +41,6 @@ public class TestGetUserResponse {
                 .id(id)
                 .build();
 
-        Assertions.assertEquals(user_actual, user_expected);
+        Assertions.assertEquals(user_actual, user_expected);*/
     }
 }
