@@ -1,6 +1,9 @@
 package org.example.requests;
 
 import io.restassured.*;
+import io.restassured.filter.log.ErrorLoggingFilter;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.specification.RequestSpecification;
 import org.example.PropertyReadHelper;
 import org.example.entities.request.RegisterLoginRequestBody;
@@ -21,9 +24,10 @@ public class Requests {
         requestSpecification = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .header("x-api-key", apiKey)
+                .filter(new RequestLoggingFilter())
+                .filter(new ResponseLoggingFilter())
+                .filter(new ErrorLoggingFilter())
                 .baseUri(BASE_URL)
-                .log()
-                .all()
                 .when();
 
         return this;
