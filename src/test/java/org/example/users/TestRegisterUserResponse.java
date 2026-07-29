@@ -8,9 +8,12 @@ import org.example.requests.Requests;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Execution(ExecutionMode.CONCURRENT)
 public class TestRegisterUserResponse {
 
     @Test
