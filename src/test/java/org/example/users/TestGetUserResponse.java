@@ -25,8 +25,7 @@ public class TestGetUserResponse {
     @Owner("AQA-1")
     public void testGetUser(String id, String email, String first_name, String last_name, String avatar) {
 
-        UserResponse.UserData user_actual = new Requests()
-                .setSpecs()
+        UserResponse.UserData user_actual = Requests.builder()
                 .getUser(id, 200)
                 .getData();
 

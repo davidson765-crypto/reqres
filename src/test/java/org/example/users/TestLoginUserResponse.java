@@ -29,7 +29,9 @@ public class TestLoginUserResponse {
                 .password(PropertyReadHelper.getPropertyKey("API_REGISTRATION_PASSWORD"))
                 .build();
 
-        RegisterUserResponse loginUser = new Requests().setSpecs().postLogin(200, user_log);
+        RegisterUserResponse loginUser = Requests.builder()
+                .setSpecs()
+                .postLogin(200, user_log);
 
         Assertions.assertEquals(loginUser.getToken(), "QpwL5tke4Pnpja7X4");
     }

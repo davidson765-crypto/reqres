@@ -31,7 +31,9 @@ public class TestRegisterUserResponse {
                 .password(PropertyReadHelper.getPropertyKey("API_REGISTRATION_PASSWORD"))
                 .build();
 
-        RegisterUserResponse registerUser = new Requests().setSpecs().postRegister(200, user_reg);
+        RegisterUserResponse registerUser = Requests.builder()
+                .setSpecs()
+                .postRegister(200, user_reg);
 
         Assertions.assertAll("Проверка id и token пользователя",
                 () -> assertEquals(registerUser.getId(), "4"),
