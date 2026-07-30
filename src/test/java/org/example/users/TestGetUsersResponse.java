@@ -2,14 +2,17 @@ package org.example.users;
 
 import io.qameta.allure.*;
 import org.example.entities.response.UsersResponse;
+import org.example.extensions.FailureNotifier;
 import org.example.requests.Requests;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Execution(ExecutionMode.CONCURRENT)
+@ExtendWith(FailureNotifier.class)
 public class TestGetUsersResponse {
 
     @Test
