@@ -1,17 +1,20 @@
 package org.example.users;
 
 import io.qameta.allure.*;
-import org.example.PropertyReadHelper;
 import org.example.entities.request.RegisterLoginRequestBody;
 import org.example.entities.response.RegisterUserResponse;
+import org.example.extensions.FailureNotifier;
+import org.example.extensions.UserExtension;
 import org.example.requests.Requests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 
 @Execution(ExecutionMode.CONCURRENT)
+@ExtendWith({FailureNotifier.class, UserExtension.class})
 public class TestLoginUserResponse {
 
     @Test
@@ -22,14 +25,11 @@ public class TestLoginUserResponse {
     @Story("Авторизация")
     @Severity(SeverityLevel.BLOCKER)
     @Owner("AQA-1")
-    public void testLoginUserResponse() {
+    public void testLoginUserResponse(RegisterLoginRequestBody user) {
 
-        RegisterLoginRequestBody user_log = RegisterLoginRequestBody.builder()
-                .email(PropertyReadHelper.getPropertyCustom("API_EMAIL"))
-                .password(PropertyReadHelper.getPropertyKey("API_REGISTRATION_PASSWORD"))
-                .build();
-
-        RegisterUserResponse loginUser = new Requests().setSpecs().postLogin(200, user_log);
+        RegisterUserResponse loginUser = Requests.builder()
+                .setSpecs()
+                .postLogin(200, user);
 
         Assertions.assertEquals(loginUser.getToken(), "QpwL5tke4Pnpja7X4");
     }

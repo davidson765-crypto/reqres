@@ -19,6 +19,11 @@ public class Requests {
 
     public RequestSpecification requestSpecification;
 
+    public static Requests builder() {
+
+        return new Requests().setSpecs();
+    }
+
     public Requests setSpecs() {
 
         requestSpecification = RestAssured.given()
