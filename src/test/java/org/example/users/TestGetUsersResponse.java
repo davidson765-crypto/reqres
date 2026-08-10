@@ -26,6 +26,7 @@ public class TestGetUsersResponse {
     public void getUsers() {
 
         UsersResponse users = Requests.builder()
+                .setSpecs()
                 .getUsers(2, 200);
 
         assertThat(users.getPage()).isEqualTo("2");

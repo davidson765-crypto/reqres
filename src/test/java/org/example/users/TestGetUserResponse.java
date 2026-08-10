@@ -2,16 +2,19 @@ package org.example.users;
 
 import io.qameta.allure.*;
 import org.example.entities.response.UserResponse;
+import org.example.extensions.FailureNotifier;
 import org.example.requests.Requests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.ParameterizedTest;
 
 @Execution(ExecutionMode.CONCURRENT)
+@ExtendWith(FailureNotifier.class)
 public class TestGetUserResponse {
 
     @ParameterizedTest
@@ -26,6 +29,7 @@ public class TestGetUserResponse {
     public void testGetUser(String id, String email, String first_name, String last_name, String avatar) {
 
         UserResponse.UserData user_actual = Requests.builder()
+                .setSpecs()
                 .getUser(id, 200)
                 .getData();
 
@@ -34,15 +38,5 @@ public class TestGetUserResponse {
         assertThat(user_actual.getFirst_name()).isEqualTo(first_name);
         assertThat(user_actual.getLast_name()).isEqualTo(last_name);
         assertThat(user_actual.getAvatar()).isEqualTo(avatar);
-
-        /*UserResponse.UserData user_expected = UserResponse.UserData.builder()
-                .first_name(first_name)
-                .last_name(last_name)
-                .email(email)
-                .avatar(avatar)
-                .id(id)
-                .build();
-
-        Assertions.assertEquals(user_actual, user_expected);*/
     }
 }
