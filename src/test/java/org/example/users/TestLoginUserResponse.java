@@ -1,8 +1,10 @@
 package org.example.users;
 
+import Base.WireMockHost;
+import com.github.tomakehurst.wiremock.client.WireMock;
 import io.qameta.allure.*;
 import org.example.entities.request.RegisterLoginRequestBody;
-import org.example.entities.response.RegisterUserResponse;
+import org.example.entities.response.LoginUserResponse;
 import org.example.extensions.FailureNotifier;
 import org.example.extensions.UserExtension;
 import org.example.requests.Requests;
@@ -13,9 +15,26 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+
 @Execution(ExecutionMode.CONCURRENT)
 @ExtendWith({FailureNotifier.class, UserExtension.class})
-public class TestLoginUserResponse {
+public class TestLoginUserResponse extends WireMockHost{
+
+    @Step("Настраиваем мок успешного ответа авторизации")
+    public void mockSetUp() {
+
+        stubFor(post(urlEqualTo("/login"))
+                .withHeader("Content-Type", WireMock.matching("application/json"))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")
+                        .withBody("""
+                                {
+                                "token": "QpwL5tke4Pnpja7X4"
+                                }
+                                """)));
+    }
 
     @Test
     @DisplayName("Проверка ответа API: авторизация пользователя")
@@ -27,8 +46,11 @@ public class TestLoginUserResponse {
     @Owner("AQA-1")
     public void testLoginUserResponse(RegisterLoginRequestBody user) {
 
-        RegisterUserResponse loginUser = Requests.builder()
-                .setSpecs()
+        mockSetUp();
+
+        LoginUserResponse loginUser = Requests.builder()
+                .setSpecsMock()
+                .addBaseUrl(baseUrl)
                 .postLogin(200, user);
 
         Assertions.assertEquals(loginUser.getToken(), "QpwL5tke4Pnpja7X4");

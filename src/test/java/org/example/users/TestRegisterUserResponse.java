@@ -1,5 +1,7 @@
 package org.example.users;
 
+import Base.WireMockHost;
+import com.github.tomakehurst.wiremock.client.WireMock;
 import io.qameta.allure.*;
 import org.example.entities.request.RegisterLoginRequestBody;
 import org.example.entities.response.RegisterUserResponse;
@@ -13,14 +15,32 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Execution(ExecutionMode.CONCURRENT)
 @ExtendWith({FailureNotifier.class, UserExtension.class})
-public class TestRegisterUserResponse {
+public class TestRegisterUserResponse extends WireMockHost{
+
+    @Step("Настраиваем мок успешного ответа регистрации")
+    public void mockSetUp() {
+
+
+        stubFor(post(urlEqualTo("/register"))
+                .withHeader("Content-Type", WireMock.matching("application/json"))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")
+                        .withBody("""
+                                {
+                                "id": 4,
+                                "token": "QpwL5tke4Pnpja7X4"
+                                }
+                                """)));
+    }
 
     @Test
-    @DisplayName("Проверка ответа API: регистрвция пользователя")
+    @DisplayName("Проверка ответа API: регистрация пользователя")
     @Description("Тест отправляет POST-запрос с валидными данными к /register и проверяет корректность ответа")
     @Epic("API")
     @Feature("Авторизация")
@@ -29,8 +49,11 @@ public class TestRegisterUserResponse {
     @Owner("AQA-1")
     public void testRegisterUser(RegisterLoginRequestBody user) {
 
+        mockSetUp();
+
         RegisterUserResponse registerUser = Requests.builder()
-                .setSpecs()
+                .setSpecsMock()
+                .addBaseUrl(baseUrl)
                 .postRegister(200, user);
 
         Assertions.assertAll("Проверка id и token пользователя",

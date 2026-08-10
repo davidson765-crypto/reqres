@@ -7,9 +7,12 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.specification.RequestSpecification;
 import org.example.PropertyReadHelper;
 import org.example.entities.request.RegisterLoginRequestBody;
+import org.example.entities.response.LoginUserResponse;
 import org.example.entities.response.RegisterUserResponse;
 import org.example.entities.response.UserResponse;
 import org.example.entities.response.UsersResponse;
+
+import java.util.Map;
 
 public class Requests {
 
@@ -17,11 +20,13 @@ public class Requests {
 
     public String BASE_URL = PropertyReadHelper.getPropertyCustom("API_BASE_URL");
 
+    public String MOCK_BASE_URL = PropertyReadHelper.getPropertyCustom("API_MOCK_BASE_URL");
+
     public RequestSpecification requestSpecification;
 
     public static Requests builder() {
 
-        return new Requests().setSpecs();
+        return new Requests();
     }
 
     public Requests setSpecs() {
@@ -34,6 +39,40 @@ public class Requests {
                 .filter(new ErrorLoggingFilter())
                 .baseUri(BASE_URL)
                 .when();
+
+        return this;
+    }
+
+    public Requests setSpecsMock() {
+
+        requestSpecification = RestAssured.given()
+                .header("Content-Type", "application/json")
+                .header("x-api-key", apiKey)
+                .filter(new RequestLoggingFilter())
+                .filter(new ResponseLoggingFilter())
+                .filter(new ErrorLoggingFilter())
+                .baseUri(MOCK_BASE_URL);
+
+        return this;
+    }
+
+    public Requests addHeaders(Map<String, String> headers) {
+
+        requestSpecification.headers(headers);
+
+        return this;
+    }
+
+    public Requests addCookies(Map<String, String> cookies) {
+
+        requestSpecification.cookies(cookies);
+
+        return this;
+    }
+
+    public Requests addBaseUrl(String baseUrl) {
+
+        requestSpecification.baseUri(baseUrl);
 
         return this;
     }
@@ -76,7 +115,7 @@ public class Requests {
                 .as(RegisterUserResponse.class);
     }
 
-    public RegisterUserResponse postLogin(int status_code, RegisterLoginRequestBody user_log) {
+    public LoginUserResponse postLogin(int status_code, RegisterLoginRequestBody user_log) {
 
         return requestSpecification
                 .body(user_log)
@@ -86,6 +125,6 @@ public class Requests {
                 .statusCode(status_code)
                 .extract()
                 .response()
-                .as(RegisterUserResponse.class);
+                .as(LoginUserResponse.class);
     }
 }
