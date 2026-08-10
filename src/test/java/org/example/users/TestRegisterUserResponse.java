@@ -2,7 +2,6 @@ package org.example.users;
 
 import Base.WireMockHost;
 import com.github.tomakehurst.wiremock.client.WireMock;
-import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.qameta.allure.*;
 import org.example.entities.request.RegisterLoginRequestBody;
 import org.example.entities.response.RegisterUserResponse;
@@ -19,7 +18,6 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@WireMockTest(httpPort = 8000)
 @Execution(ExecutionMode.CONCURRENT)
 @ExtendWith({FailureNotifier.class, UserExtension.class})
 public class TestRegisterUserResponse extends WireMockHost{
