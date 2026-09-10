@@ -1,4 +1,4 @@
-package org.example.users.api.smoke;
+package org.example.users;
 
 import Base.WireMockHost;
 import com.github.tomakehurst.wiremock.client.WireMock;

@@ -1,4 +1,4 @@
-package org.example.users.api.regression;
+package org.example.users;
 
 import io.qameta.allure.*;
 import org.example.entities.response.UserResponse;
