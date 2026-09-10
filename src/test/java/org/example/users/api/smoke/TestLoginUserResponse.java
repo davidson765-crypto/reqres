@@ -1,4 +1,4 @@
-package org.example.users;
+package org.example.users.api.smoke;
 
 import Base.WireMockHost;
 import com.github.tomakehurst.wiremock.client.WireMock;
@@ -53,6 +53,6 @@ public class TestLoginUserResponse extends WireMockHost{
                 .addBaseUrl(baseUrl)
                 .postLogin(200, user);
 
-        Assertions.assertEquals(loginUser.getToken(), "QpwL5tke4Pnpja7X4");
+        Assertions.assertEquals("QpwL5tke4Pnpja7X4", loginUser.getToken());
     }
 }

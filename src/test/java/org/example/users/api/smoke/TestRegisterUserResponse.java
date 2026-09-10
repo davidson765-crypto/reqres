@@ -1,4 +1,4 @@
-package org.example.users;
+package org.example.users.api.smoke;
 
 import Base.WireMockHost;
 import com.github.tomakehurst.wiremock.client.WireMock;
@@ -57,8 +57,8 @@ public class TestRegisterUserResponse extends WireMockHost{
                 .postRegister(200, user);
 
         Assertions.assertAll("Проверка id и token пользователя",
-                () -> assertEquals(registerUser.getId(), "4"),
-                () -> assertEquals(registerUser.getToken(), "QpwL5tke4Pnpja7X4")
+                () -> assertEquals("4", registerUser.getId()),
+                () -> assertEquals("QpwL5tke4Pnpja7X4", registerUser.getToken())
                 );
     }
 
