@@ -1,4 +1,4 @@
-package org.example.entities.response;
+package org.example.api.entities.response;
 
 import com.fasterxml.jackson.annotation.*;
 import lombok.Data;

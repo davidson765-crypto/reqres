@@ -1,9 +1,9 @@
 package org.example.users.api.regression;
 
 import io.qameta.allure.*;
-import org.example.entities.response.UserResponse;
-import org.example.extensions.FailureNotifier;
-import org.example.requests.Requests;
+import org.example.api.entities.response.UserResponse;
+import org.example.api.extensions.FailureNotifier;
+import org.example.api.requests.Requests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +13,6 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.ParameterizedTest;
 
-@Execution(ExecutionMode.CONCURRENT)
 @ExtendWith(FailureNotifier.class)
 public class TestGetUserResponse {
 

@@ -1,13 +1,13 @@
 package org.example.users.api.smoke;
 
-import Base.WireMockHost;
+import Base.mock.WireMockHost;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import io.qameta.allure.*;
-import org.example.entities.request.RegisterLoginRequestBody;
-import org.example.entities.response.RegisterUserResponse;
-import org.example.extensions.FailureNotifier;
-import org.example.extensions.UserExtension;
-import org.example.requests.Requests;
+import org.example.api.entities.request.RegisterLoginRequestBody;
+import org.example.api.entities.response.RegisterUserResponse;
+import org.example.api.extensions.FailureNotifier;
+import org.example.api.extensions.UserExtension;
+import org.example.api.requests.Requests;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +18,6 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Execution(ExecutionMode.CONCURRENT)
 @ExtendWith({FailureNotifier.class, UserExtension.class})
 public class TestRegisterUserResponse extends WireMockHost{
 

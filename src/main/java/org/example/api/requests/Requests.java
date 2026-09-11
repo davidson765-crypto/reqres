@@ -1,4 +1,4 @@
-package org.example.requests;
+package org.example.api.requests;
 
 import io.restassured.*;
 import io.restassured.filter.log.ErrorLoggingFilter;
@@ -6,11 +6,11 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.specification.RequestSpecification;
 import org.example.PropertyReadHelper;
-import org.example.entities.request.RegisterLoginRequestBody;
-import org.example.entities.response.LoginUserResponse;
-import org.example.entities.response.RegisterUserResponse;
-import org.example.entities.response.UserResponse;
-import org.example.entities.response.UsersResponse;
+import org.example.api.entities.request.RegisterLoginRequestBody;
+import org.example.api.entities.response.LoginUserResponse;
+import org.example.api.entities.response.RegisterUserResponse;
+import org.example.api.entities.response.UserResponse;
+import org.example.api.entities.response.UsersResponse;
 
 import java.util.Map;
 

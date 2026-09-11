@@ -1,4 +1,4 @@
-package org.example.entities.request;
+package org.example.api.entities.request;
 
 import lombok.Builder;
 import lombok.Data;

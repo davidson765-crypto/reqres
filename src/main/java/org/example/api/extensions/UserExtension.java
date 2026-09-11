@@ -1,7 +1,7 @@
-package org.example.extensions;
+package org.example.api.extensions;
 
 import org.example.PropertyReadHelper;
-import org.example.entities.request.RegisterLoginRequestBody;
+import org.example.api.entities.request.RegisterLoginRequestBody;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolutionException;
