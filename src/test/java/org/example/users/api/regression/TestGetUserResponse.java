@@ -8,8 +8,6 @@ import org.example.api.requests.Requests;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.parallel.Execution;
-import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.ParameterizedTest;
 
