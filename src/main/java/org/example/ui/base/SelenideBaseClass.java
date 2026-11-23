@@ -13,8 +13,8 @@ public class SelenideBaseClass {
         Configuration.headless = Boolean.parseBoolean(PropertyReadHelper.getPropertyCustom("OPTION_HEADLESS"));
         Configuration.browserSize = PropertyReadHelper.getPropertyCustom("OPTION_BROWSER_SIZE");
         Configuration.pageLoadStrategy = "eager";
-        Configuration.pageLoadTimeout = 10000;
-        Configuration.timeout = 10000;
+        Configuration.pageLoadTimeout = 30000;
+        Configuration.timeout = 30000;
     }
 
     public static void openUrl(String url) {

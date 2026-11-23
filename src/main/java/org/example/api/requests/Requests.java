@@ -16,13 +16,13 @@ import java.util.Map;
 
 public class Requests {
 
-    public String apiKey = PropertyReadHelper.getPropertyKey("API_KEY");
+    private final String apiKey = PropertyReadHelper.getPropertyKey("API_KEY");
 
-    public String BASE_URL = PropertyReadHelper.getPropertyCustom("API_BASE_URL");
+    private final String BASE_URL = PropertyReadHelper.getPropertyCustom("API_BASE_URL");
 
-    public String MOCK_BASE_URL = PropertyReadHelper.getPropertyCustom("API_MOCK_BASE_URL");
+    private final String MOCK_BASE_URL = PropertyReadHelper.getPropertyCustom("API_MOCK_BASE_URL");
 
-    public RequestSpecification requestSpecification;
+    private RequestSpecification requestSpecification;
 
     public static Requests builder() {
 
@@ -51,7 +51,8 @@ public class Requests {
                 .filter(new RequestLoggingFilter())
                 .filter(new ResponseLoggingFilter())
                 .filter(new ErrorLoggingFilter())
-                .baseUri(MOCK_BASE_URL);
+                .baseUri(MOCK_BASE_URL)
+                .when();
 
         return this;
     }

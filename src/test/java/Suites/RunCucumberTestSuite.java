@@ -6,6 +6,7 @@ import org.junit.platform.suite.api.*;
 
 @Suite
 @SelectClasspathResource("features")
+@ConfigurationParameter(key = "src/test/java/org/example/users/ui", value = "steps,hooks,context")
 @Execution(ExecutionMode.CONCURRENT)
 public class RunCucumberTestSuite {
 }

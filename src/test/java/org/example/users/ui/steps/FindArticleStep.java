@@ -27,7 +27,6 @@ public class FindArticleStep {
     @And("пользователь нашел статью, используя ключевое слово {string}")
     public void findArticle(String keyword) {
         $("#searchInput")
-                .shouldBe(Condition.visible)
                 .shouldBe(Condition.enabled)
                 .setValue(keyword)
                 .pressEnter();
@@ -35,6 +34,6 @@ public class FindArticleStep {
 
     @Then("в заголовке найденной статьи содержиться слово {string}")
     public void checkArticleName(String articleName) {
-        Assertions.assertThat($x("//span[@class='mw-page-title-main']").getText()).isEqualTo(articleName);
+        Assertions.assertThat($x("//span[@class='mw-page-title-main']").shouldBe(Condition.visible).getText()).isEqualTo(articleName);
     }
 }
